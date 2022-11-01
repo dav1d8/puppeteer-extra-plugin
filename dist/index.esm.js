@@ -5,8 +5,6 @@
  */
 import debug from 'debug';
 
-/** @private */
-const merge = require('merge-deep');
 /**
  * Base class for `puppeteer-extra` plugins.
  *
@@ -52,7 +50,7 @@ class PuppeteerExtraPlugin {
     constructor(opts) {
         this._debugBase = debug(`puppeteer-extra-plugin:base:${this.name}`);
         this._childClassMembers = [];
-        this._opts = merge(this.defaults, opts || {});
+        this._opts = Object.assign({}, this.defaults, opts || {});
         this._debugBase('Initialized.');
     }
     /**

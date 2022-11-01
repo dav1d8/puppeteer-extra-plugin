@@ -5,8 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PuppeteerExtraPlugin = void 0;
 const debug_1 = __importDefault(require("debug"));
-/** @private */
-const merge = require('merge-deep');
 /**
  * Base class for `puppeteer-extra` plugins.
  *
@@ -52,7 +50,7 @@ class PuppeteerExtraPlugin {
     constructor(opts) {
         this._debugBase = (0, debug_1.default)(`puppeteer-extra-plugin:base:${this.name}`);
         this._childClassMembers = [];
-        this._opts = merge(this.defaults, opts || {});
+        this._opts = Object.assign({}, this.defaults, opts || {});
         this._debugBase('Initialized.');
     }
     /**
